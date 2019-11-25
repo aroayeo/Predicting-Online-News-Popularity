@@ -29,11 +29,8 @@ def compare_models(X_train, X_test, y_train, y_test):
     lr = LinearRegression()
     model_lr = lr.fit(X_train, y_train)
     run_model(model_lr, X_train, X_test, y_train, y_test)
-    ridge = Ridge()
-    model_ridge = ridge.fit(X_train, y_train)
-    run_model(model_ridge, X_train, X_test, y_train, y_test)
     lasso = Lasso()
-    model_lasso = lasso.fit(X_train, X_test)
+    model_lasso = lasso.fit(X_train, y_train)
     run_model(model_lasso, X_train, X_test, y_train, y_test)
 
 def compare_poly(X_train, X_test, y_train, y_test, degrees=2):
