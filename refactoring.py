@@ -16,14 +16,15 @@ from sklearn.linear_model import Ridge, Lasso, LassoLarsIC
 from cleaning import *
 from sklearn.feature_selection import VarianceThreshold
 
+
 def run_model(model, X_train, X_test, y_train, y_test):
-    print('Training R^2 :',model.score(X_train, y_train))
+    print('Training R^2 :',round(model.score(X_train, y_train),4))
     y_pred_train = model.predict(X_train)
-    print('Training Root Mean Square Error',np.sqrt(mean_squared_error(y_train, y_pred_train)))
+    print('Training Root Mean Square Error',round(np.sqrt(mean_squared_error(y_train, y_pred_train)),4))
     print('\n----------------\n')
-    print('Testing R^2 :',model.score(X_test, y_test))
+    print('Testing R^2 :',round(model.score(X_test, y_test),4))
     y_pred_test = model.predict(X_test)
-    print('Testing Root Mean Square Error',np.sqrt(mean_squared_error(y_test, y_pred_test)))
+    print('Testing Root Mean Square Error',round(np.sqrt(mean_squared_error(y_test, y_pred_test)),4))
     
 def compare_poly(X_train, X_test, y_train, y_test, degrees=2):
     for deg in range(2,degrees+1):

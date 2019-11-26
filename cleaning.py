@@ -25,8 +25,11 @@ def strip_columns(df):
 
 def log_target(data, target):
     data[target]=np.log(data[target])
+    sns.distplot(data[target])
+    plt.title('Target Variable Distribution')
+    plt.show()
     return data
-    
+
 def variables(df,a_list):
     df = df[a_list]
     return df
