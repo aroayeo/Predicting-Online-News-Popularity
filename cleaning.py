@@ -24,8 +24,8 @@ def strip_columns(df):
     return df
 
 def log_target(data, target):
-    data[target]=np.log(data[target])
-    sns.distplot(data[target])
+    data['log_' + target]=np.log(data[target])
+    sns.distplot(data['log_' + target])
     plt.title('Target Variable Distribution')
     plt.show()
     return data
