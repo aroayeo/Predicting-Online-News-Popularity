@@ -22,12 +22,13 @@ def run_model(model, X_train, X_test, y_train, y_test):
     print('Testing R^2 :',round(model.score(X_test, y_test),4))
     y_pred_test = model.predict(X_test)
     print('Testing Root Mean Square Error',round(np.sqrt(mean_squared_error(y_test, y_pred_test)),4))
+    qq_plot(model, pd.concat([X_train, X_test]), pd.concat([y_train, y_test]))
     
 def compare_poly(X_train, X_test, y_train, y_test, degrees=2):
     for deg in range(2,degrees+1):
         poly = PolynomialFeatures(deg)
-        X_poly_train = poly.fit_transform(X_train)
-        X_poly_test = poly.fit_transform(X_test)
+        X_poly_train = pd.DataFrame(poly.fit_transform(X_train))
+        X_poly_test = pd.DataFrame(poly.fit_transform(X_test))
         lr = LinearRegression()
         model_lr = lr.fit(X_poly_train, y_train)
         run_model(model_lr, X_poly_train, X_poly_test, y_train, y_test)
@@ -40,8 +41,8 @@ def qq_plot(model, X, y):
     res = residuals(model, X, y)
     fig = sm.graphics.qqplot(res, dist = stats.norm, line= '45', fit= True)
     
-def ols_model(X, y):
-    outcome = 'log_shares'
+def ols_model(X, y, target):
+    outcome = target
     predictors = '+'.join(X.columns)
     formula = outcome + '~' + predictors
     model = ols(formula=formula, data=pd.concat([X,y], axis = 1)).fit()
