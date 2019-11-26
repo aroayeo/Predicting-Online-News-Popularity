@@ -18,4 +18,4 @@ Objective:
     We want to create a regression model that predicts the number of times an article will be shared based on the content. The data has been cleaned by UCI, and key features of the article have been recorded in a csv file. We will explore the relationship between variables such as: length of the title, length of the article, day published, number of links in article and others.
 
 Client:
-    Our client is a publication copany trying to increase the popularity of their articles. They would like to know what features an article should have to maximise its popularity.
+    Our client is a publication company trying to increase the popularity of their articles. They would like to know what features an article should have to maximise its popularity.
